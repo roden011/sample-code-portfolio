@@ -11,6 +11,7 @@
 from random import randint
 import turtle
 import math
+
 class Node:
 	def __init__(self, index, coordinates, range = 70):
 		self.index = index
@@ -103,6 +104,7 @@ class Node:
 		self.destReceived = tf
 
 def RREQ(nodeList, source, destination):
+'''This function simulates an RREQ from the source node to find the destination node'''
     current = source
     q = [current]
     nodeList[current].setHopCount(0)    
@@ -121,6 +123,7 @@ def RREQ(nodeList, source, destination):
         current = q.pop(0)
 	
 def RREP(nodeList, current, source):
+'''This function simulates an RREP response that determines the shortest path between nodes'''
     path = [current]
     while current != source:
         received = nodeList[current].getReceivedFrom()        
@@ -134,6 +137,7 @@ def RREP(nodeList, current, source):
     return path
 	
 def drawPath(path, nodeList):
+'''This function draws the calculated shortest path between two nodes'''
 	turtle.color('red')
 	turtle.pensize(1.5)
 	turtle.penup()
@@ -148,6 +152,7 @@ def drawPath(path, nodeList):
 		count += 1
 		
 def makeEveryNodeHaveANeighbor(nodeList, coordinateList):
+'''Ensures that every node in the simulation will have another node within range.'''
 	hadToChangeNode = True
 	while hadToChangeNode:
 		hadToChangeNode = False
@@ -208,4 +213,6 @@ def main():
 		drawPath(path, nodeList)	
 	win.exitonclick()	
 	
-main()
+		
+if __name__ == '__main__':
+	main()

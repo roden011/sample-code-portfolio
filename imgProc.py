@@ -121,4 +121,6 @@ def main():
                 newImg.save(name + ".gif")   
             
         
-main()
+		
+if __name__ == '__main__':
+	main()

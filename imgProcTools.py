@@ -31,13 +31,11 @@ def createNegative(image) :
          # Set the pixel in the new image to the new color.
          newImage.setPixel(row, col, newRed, newGreen, newBlue)
 
-   return newImage
-   
+   return newImage   
    
 def greyScale(image):
     width = image.width()
-    height = image.height()
-    
+    height = image.height()    
     newImage = GraphicsImage(width, height)
     for row in range(height):
         for col in range(width):
@@ -45,21 +43,16 @@ def greyScale(image):
             green = image.getGreen(row, col)
             blue = image.getBlue(row, col)
         
-            # Filter the pixel.
-            
-            
+            # Filter the pixel.           
             newRed = int(0.21 * red)
             newGreen = int(0.72 * green)
-            newBlue = int(0.07 * blue)
-            
-            
+            newBlue = int(0.07 * blue)            
             grey = newRed + newGreen + newBlue
             
             # Set the pixel in the new image to the new color.
             newImage.setPixel(row, col, grey, grey, grey)
 
-    return newImage
-   
+    return newImage   
 
 ## Creates and returns a new image in which the brightness levels of
 #  all three color components are adjusted by a given percentage.
@@ -103,7 +96,6 @@ def adjustBrightness(image, amount) :
 
    return newImage
 
-
 ## Creates and returns a new image that results from flipping an original 
 #  image vertically.
 #  @param image the source image
@@ -121,8 +113,7 @@ def flipVertically(image) :
       for col in range(width) :
          newCol = col
          pixel = image.getPixel(row, col)
-         newImage.setPixel(newRow, newCol, pixel)
-        
+         newImage.setPixel(newRow, newCol, pixel)        
       newRow = newRow - 1      
 
    return newImage
@@ -179,12 +170,13 @@ def sepiaFilter(image):
          newImage.setPixel(row, col, newRed, newGreen, newBlue)
 
    return newImage
+   
+def blackWhite(image):
 """
 Creates and returns a new image that is the original image, but in black and white
 @param image - the image to be turned black and white
 @return the new image in black and white
 """
-def blackWhite(image):
    width = image.width()
    height = image.height()
   
@@ -210,12 +202,13 @@ def blackWhite(image):
          # Set the pixel in the new image to the new color.
          newImage.setPixel(row, col, newRed, newGreen, newBlue)  
    return newImage
+
+def smooth(image):
 """
 enhances grainy images by setting each pixel to the median value of all the pixels around it
 @param image - the image to be enhanced
 @return the new enhanced image
 """
-def smooth(image):
    width = image.width()
    height = image.height()
   
@@ -259,12 +252,13 @@ def smooth(image):
          newImage.setPixel(row, col, newRed, newGreen, newBlue) 
            
    return newImage
+
+def edgeDetection(image):
 """
 creates a new image that highlights drastics changes in intensity from one pixel to the next
 @params image-image to have the edges shown
 @returns new image highlighting the edges
 """
-def edgeDetection(image):
    width = image.width()
    height = image.height()
   
@@ -311,9 +305,9 @@ def edgeDetection(image):
             tG = 255
          else:
             tG = 0
-         newImage.setPixel(row, col, tG, tG, tG)      
-   return newImage
-   
+         newImage.setPixel(row, col, tG, tG, tG)  
+		 
+   return newImage   
    
 def shrink(image):
    width = image.width()
@@ -434,8 +428,8 @@ def colorHistoEqual(image):
          newGreen = greenEQ[g]
          newBlue = blueEQ[b]      
          newImage.setPixel(row, col, newRed, newGreen, newBlue)
-    return newImage
-            
+		 
+    return newImage            
 
 def rotateImage(image, theta):
     width = image.width()
@@ -455,23 +449,18 @@ def rotateImage(image, theta):
         for col in range(width):            
             
             r,g,b = image.getPixel(row, col)
-            newImage1.setPixel(row + hEdgeDiff//2, col + wEdgeDiff//2, r, g, b)
-     
+            newImage1.setPixel(row + hEdgeDiff//2, col + wEdgeDiff//2, r, g, b)     
             
     for row in range(newHeight):
         for col in range(newWidth):     
             x = col - h
-            y = row - k
-            
+            y = row - k            
             x1 = int(x*math.cos(angle) + y*math.sin(angle))
-            y1 = int(y*math.cos(angle) - x*math.sin(angle))
-            
+            y1 = int(y*math.cos(angle) - x*math.sin(angle))            
             x = x1 + h
-            y = y1 + k
-                    
+            y = y1 + k                    
             if (x >= 0 and y >= 0) and (x < newWidth and y < newHeight):
-                r,g,b = newImage1.getPixel(y,x)
-                
+                r,g,b = newImage1.getPixel(y,x)                
             else:
                 r,g,b = 0,0, 0
             newImage2.setPixel(row, col, r, g, b)
@@ -479,6 +468,7 @@ def rotateImage(image, theta):
     return newImage2
     
 def warpImage(image):
+'''This function in complete'''
     width = image.width()
     height = image.height()
     newImage = GraphicsImage(width, height)
@@ -502,8 +492,7 @@ def warpImage(image):
             if col % 2 == 1:            
                 r,g,b = image.getPixel(row, col)
                 offset+=2           
-                newImage.setPixel(row, col - offset, r, g, b)
-            
+                newImage.setPixel(row, col - offset, r, g, b)            
     
     for row in range(height):
         offset = (2*width//3 - width//2)//2
