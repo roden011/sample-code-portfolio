@@ -36,10 +36,9 @@ int main()
 
     int minAbsDiff = 5000000;
     int maxAbsDiff = 0;
-    int absoluteDiff, count, hours, mins, secs, runtime, set0, set1, set2;//, set3, set4, set5, set6, set7, set8, set9;
+    int absoluteDiff, count, hours, mins, secs, runtime, set0, set1, set2, set3, set4, set5, set6, set7, set8, set9;
     string best, worst, num;
     long long int randomPermutations= pow(2, 35);
-    srand(time(0));
     for(long long int k = 0; k < randomPermutations; k++){
         
         num = "";
